@@ -406,3 +406,6 @@ video {
 	width: 50%;
 	margin-bottom: 0;
 }
+#btn-bars, #btn-search {
+		display: none;
+		}

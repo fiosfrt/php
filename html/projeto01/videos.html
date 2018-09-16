@@ -2,12 +2,16 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width:device-width, inicial-scale=1">
 	<title>Orlando City Meu</title>
 	<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="lib/plyr/dist/plyr.css">
 	<link rel="stylesheet" href="lib/OwlCarousel2/dist/assets/owl.carousel.min.css">
 	<link rel="stylesheet" href="lib/OwlCarousel2/dist/assets/owl.theme.default.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/orlando.css">
+	<link rel="stylesheet" href="css/orlando-mobile.css">
+
 
 </head>
 <body>
@@ -93,12 +97,23 @@
 
 					<div class="row">
 						
-						<video src="mp4/highlights.mp4" controls poster="img/Orlando_City_Foundation_2015.jpg"></video>
+						<div class="player">
+							<video src="mp4/highlights.mp4"  controls  poster="img/Orlando_City_Foundation_2015.jpg">
+								
+								 <track kind="captions" label="Português (Brasil)" src="vtt/legendas.vtt" srclang="pt-br" default>
+</video>
+
+							</video>
+						</div>
 
 						<!--<audio src="mp3/audio.mp3" display:none></audio>-->
 						
 					</div>
 
+					<br>
+						<input type="range" id="volume" min="0" max="1" step="00.1" value="1">
+
+						<button type="button" id="btn-play-pause" class="btn btn-success">PLAY</button>
 			</div>	
 	</div>
 
@@ -237,6 +252,7 @@
 </footer>
 
 	<script src="lib/jquery/jquery.min.js"></script>
+	<script src="lib/plyr/dist/plyr.js"></script>
 	<script src="lib/OwlCarousel2/dist/owl.carousel.min.js"></script>
 	<script src="lib/bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/efeitos.js"></script>
@@ -253,8 +269,33 @@
 
 			});
 
+			$("#volume").on("mousemove", function(){
+
+				$("video")[0].volume = parseFloat($(this).val());
+
+			});
+
+			$("#btn-play-pause").on("click", function(){
+
+				var video = $("video")[0];
+
+				if ($(this).hasClass("btn-success")) {
+					$(this).text("PAUSE");
+					video.play();
+				} else {
+					$(this).text("PLAY");
+					video.pause();
+				}
+
+				$(this).toggleClass("btn-success btn-danger");
+
+			});
+
+			const player = new Plyr('#player');
+
 		});
 
 	</script>
+	<script src="https://cdn.plyr.io/3.4.3/plyr.js"></script>
 </body>
 </html>
