@@ -403,5 +403,6 @@ footer .list-socials i {
 	margin: 7px auto;
 }
 video {
-	width: 60%;
+	width: 50%;
+	margin-bottom: 0;
 }
